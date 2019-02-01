@@ -1,0 +1,343 @@
+@startuml
+
+title __USER's Class Diagram__\n
+
+  package  {
+    package GUI {
+      package GUI.User {
+        class AddEditUserDialog {
+            - contentPane : JPanel
+            - buttonOK : JButton
+            - buttonCancel : JButton
+            - field_panel : JPanel
+            - nameField : JTextField
+            - passwordField : JTextField
+            - addressField : JTextField
+            - phNumberField : JTextField
+            - emailField : JTextField
+            - levelComboBox : JComboBox
+            - levelComboBoxModel : DefaultComboBoxModel
+            - name : String
+            - userLevel : Integer
+            - password : String
+            - address : String
+            - phNumber : String
+            - email : String
+            - userList : List<User>
+            - userLevelList : List<UserLevel>
+            + AddEditUserDialog()
+            + AddEditUserDialog()
+            - addUser()
+            - editUser()
+            - onCancel()
+            {static} + main()
+        }
+      }
+    }
+  }
+  
+
+  package  {
+    package GUI {
+      package GUI.User {
+        class AddEditUserLevelDialog {
+            - contentPane : JPanel
+            - buttonOK : JButton
+            - buttonCancel : JButton
+            - levelField : JTextField
+            - idField : JTextField
+            - idPanel : JPanel
+            - userLevelList : List<UserLevel>
+            + AddEditUserLevelDialog()
+            + AddEditUserLevelDialog()
+            - addLevel()
+            - editLevel()
+            - onCancel()
+            {static} + main()
+        }
+      }
+    }
+  }
+  
+
+  package  {
+    package GUI {
+      package GUI.User {
+        class ManageUser {
+            - frame : JFrame
+            - user_Panel : JPanel
+            - user_table : JTable
+            - user_table_panel : JScrollPane
+            - addUserButton : JButton
+            - editButton : JButton
+            - closeButton : JButton
+            - defaultTableModel : DefaultTableModel
+            - userList : List<User>
+            - selectRow : boolean
+            - id : Integer
+            + name : String
+            + userLevel : String
+            + password : String
+            + address : String
+            + phNumber : String
+            + email : String
+            + ManageUser()
+            + addDataToTable()
+            {static} + main()
+        }
+      }
+    }
+  }
+  
+
+  package  {
+    package GUI {
+      package GUI.User {
+        class ManageUserLevel {
+            - frame : JFrame
+            - levelPanel : JPanel
+            - levelTable : JTable
+            - addButton : JButton
+            - editButton : JButton
+            - cancelButton : JButton
+            - tableSccroll : JScrollPane
+            - buttonPanel : JPanel
+            - defaultTableModel : DefaultTableModel
+            - userLevelList : List<UserLevel>
+            - id : Integer
+            + ManageUserLevel()
+            + addDataToTable()
+            {static} + main()
+        }
+      }
+    }
+  }
+  
+
+  AddEditUserDialog -up-|> JDialog
+  AddEditUserDialog o-- UserDAO : userDAO
+  AddEditUserDialog o-- UserLevelDAO : userLevelDAO
+  AccessibleJDialog -up-|> AccessibleAWTDialog
+  AccessibleContainerHandler -up-|> ContainerListener
+  AccessibleContainerHandler -up-|> Serializable
+  AccessibleAWTFocusHandler -up-|> FocusListener
+  AccessibleAWTFocusHandler -up-|> Serializable
+  AccessibleAWTComponentHandler -up-|> ComponentListener
+  AccessibleAWTComponentHandler -up-|> Serializable
+  AccessibleAWTDialog -up-|> AccessibleAWTWindow
+  AccessibleContainerHandler -up-|> ContainerListener
+  AccessibleContainerHandler -up-|> Serializable
+  AccessibleAWTFocusHandler -up-|> FocusListener
+  AccessibleAWTFocusHandler -up-|> Serializable
+  AccessibleAWTComponentHandler -up-|> ComponentListener
+  AccessibleAWTComponentHandler -up-|> Serializable
+  AccessibleAWTWindow -up-|> AccessibleAWTContainer
+  AccessibleContainerHandler -up-|> ContainerListener
+  AccessibleContainerHandler -up-|> Serializable
+  AccessibleAWTFocusHandler -up-|> FocusListener
+  AccessibleAWTFocusHandler -up-|> Serializable
+  AccessibleAWTComponentHandler -up-|> ComponentListener
+  AccessibleAWTComponentHandler -up-|> Serializable
+  WindowDisposerRecord -up-|> DisposerRecord
+  AccessibleAWTContainer -up-|> AccessibleAWTComponent
+  AccessibleAWTContainer +-down- AccessibleContainerHandler
+  AccessibleContainerHandler -up-|> ContainerListener
+  AccessibleContainerHandler -up-|> Serializable
+  AccessibleAWTFocusHandler -up-|> FocusListener
+  AccessibleAWTFocusHandler -up-|> Serializable
+  AccessibleAWTComponentHandler -up-|> ComponentListener
+  AccessibleAWTComponentHandler -up-|> Serializable
+  WakingRunnable -up-|> Runnable
+  DropTargetEventTargetFilter -up-|> EventTargetFilter
+  MouseEventTargetFilter -up-|> EventTargetFilter
+  AccessibleAWTComponent -up-|> Serializable
+  AccessibleAWTComponent -up-|> AccessibleComponent
+  AccessibleAWTComponent -up-|> AccessibleContext
+  AccessibleAWTComponent +-down- AccessibleAWTFocusHandler
+  AccessibleAWTComponent +-down- AccessibleAWTComponentHandler
+  AccessibleAWTFocusHandler -up-|> FocusListener
+  AccessibleAWTFocusHandler -up-|> Serializable
+  AccessibleAWTComponentHandler -up-|> ComponentListener
+  AccessibleAWTComponentHandler -up-|> Serializable
+  DummyRequestFocusController -up-|> RequestFocusController
+  SingleBufferStrategy -up-|> BufferStrategy
+  BltSubRegionBufferStrategy -up-|> SubRegionShowable
+  BltSubRegionBufferStrategy -up-|> BltBufferStrategy
+  FlipSubRegionBufferStrategy -up-|> SubRegionShowable
+  FlipSubRegionBufferStrategy -up-|> FlipBufferStrategy
+  BltBufferStrategy -up-|> BufferStrategy
+  FlipBufferStrategy -up-|> BufferStrategy
+  ProxyCapabilities -up-|> ExtendedBufferCapabilities
+  FlipContents -up-|> AttributeValue
+  AddEditUserLevelDialog -up-|> JDialog
+  AddEditUserLevelDialog o-- UserLevelDAO : userLevelDAO
+  AccessibleJDialog -up-|> AccessibleAWTDialog
+  AccessibleContainerHandler -up-|> ContainerListener
+  AccessibleContainerHandler -up-|> Serializable
+  AccessibleAWTFocusHandler -up-|> FocusListener
+  AccessibleAWTFocusHandler -up-|> Serializable
+  AccessibleAWTComponentHandler -up-|> ComponentListener
+  AccessibleAWTComponentHandler -up-|> Serializable
+  AccessibleAWTDialog -up-|> AccessibleAWTWindow
+  AccessibleContainerHandler -up-|> ContainerListener
+  AccessibleContainerHandler -up-|> Serializable
+  AccessibleAWTFocusHandler -up-|> FocusListener
+  AccessibleAWTFocusHandler -up-|> Serializable
+  AccessibleAWTComponentHandler -up-|> ComponentListener
+  AccessibleAWTComponentHandler -up-|> Serializable
+  AccessibleAWTWindow -up-|> AccessibleAWTContainer
+  AccessibleContainerHandler -up-|> ContainerListener
+  AccessibleContainerHandler -up-|> Serializable
+  AccessibleAWTFocusHandler -up-|> FocusListener
+  AccessibleAWTFocusHandler -up-|> Serializable
+  AccessibleAWTComponentHandler -up-|> ComponentListener
+  AccessibleAWTComponentHandler -up-|> Serializable
+  WindowDisposerRecord -up-|> DisposerRecord
+  AccessibleAWTContainer -up-|> AccessibleAWTComponent
+  AccessibleAWTContainer +-down- AccessibleContainerHandler
+  AccessibleContainerHandler -up-|> ContainerListener
+  AccessibleContainerHandler -up-|> Serializable
+  AccessibleAWTFocusHandler -up-|> FocusListener
+  AccessibleAWTFocusHandler -up-|> Serializable
+  AccessibleAWTComponentHandler -up-|> ComponentListener
+  AccessibleAWTComponentHandler -up-|> Serializable
+  WakingRunnable -up-|> Runnable
+  DropTargetEventTargetFilter -up-|> EventTargetFilter
+  MouseEventTargetFilter -up-|> EventTargetFilter
+  AccessibleAWTComponent -up-|> Serializable
+  AccessibleAWTComponent -up-|> AccessibleComponent
+  AccessibleAWTComponent -up-|> AccessibleContext
+  AccessibleAWTComponent +-down- AccessibleAWTFocusHandler
+  AccessibleAWTComponent +-down- AccessibleAWTComponentHandler
+  AccessibleAWTFocusHandler -up-|> FocusListener
+  AccessibleAWTFocusHandler -up-|> Serializable
+  AccessibleAWTComponentHandler -up-|> ComponentListener
+  AccessibleAWTComponentHandler -up-|> Serializable
+  DummyRequestFocusController -up-|> RequestFocusController
+  SingleBufferStrategy -up-|> BufferStrategy
+  BltSubRegionBufferStrategy -up-|> SubRegionShowable
+  BltSubRegionBufferStrategy -up-|> BltBufferStrategy
+  FlipSubRegionBufferStrategy -up-|> SubRegionShowable
+  FlipSubRegionBufferStrategy -up-|> FlipBufferStrategy
+  BltBufferStrategy -up-|> BufferStrategy
+  FlipBufferStrategy -up-|> BufferStrategy
+  ProxyCapabilities -up-|> ExtendedBufferCapabilities
+  FlipContents -up-|> AttributeValue
+  ManageUser -up-|> JFrame
+  ManageUser o-- UserDAO : userDAO
+  AccessibleJFrame -up-|> AccessibleAWTFrame
+  AccessibleContainerHandler -up-|> ContainerListener
+  AccessibleContainerHandler -up-|> Serializable
+  AccessibleAWTFocusHandler -up-|> FocusListener
+  AccessibleAWTFocusHandler -up-|> Serializable
+  AccessibleAWTComponentHandler -up-|> ComponentListener
+  AccessibleAWTComponentHandler -up-|> Serializable
+  AccessibleAWTFrame -up-|> AccessibleAWTWindow
+  AccessibleContainerHandler -up-|> ContainerListener
+  AccessibleContainerHandler -up-|> Serializable
+  AccessibleAWTFocusHandler -up-|> FocusListener
+  AccessibleAWTFocusHandler -up-|> Serializable
+  AccessibleAWTComponentHandler -up-|> ComponentListener
+  AccessibleAWTComponentHandler -up-|> Serializable
+  AccessibleAWTWindow -up-|> AccessibleAWTContainer
+  AccessibleContainerHandler -up-|> ContainerListener
+  AccessibleContainerHandler -up-|> Serializable
+  AccessibleAWTFocusHandler -up-|> FocusListener
+  AccessibleAWTFocusHandler -up-|> Serializable
+  AccessibleAWTComponentHandler -up-|> ComponentListener
+  AccessibleAWTComponentHandler -up-|> Serializable
+  WindowDisposerRecord -up-|> DisposerRecord
+  AccessibleAWTContainer -up-|> AccessibleAWTComponent
+  AccessibleAWTContainer +-down- AccessibleContainerHandler
+  AccessibleContainerHandler -up-|> ContainerListener
+  AccessibleContainerHandler -up-|> Serializable
+  AccessibleAWTFocusHandler -up-|> FocusListener
+  AccessibleAWTFocusHandler -up-|> Serializable
+  AccessibleAWTComponentHandler -up-|> ComponentListener
+  AccessibleAWTComponentHandler -up-|> Serializable
+  WakingRunnable -up-|> Runnable
+  DropTargetEventTargetFilter -up-|> EventTargetFilter
+  MouseEventTargetFilter -up-|> EventTargetFilter
+  AccessibleAWTComponent -up-|> Serializable
+  AccessibleAWTComponent -up-|> AccessibleComponent
+  AccessibleAWTComponent -up-|> AccessibleContext
+  AccessibleAWTComponent +-down- AccessibleAWTFocusHandler
+  AccessibleAWTComponent +-down- AccessibleAWTComponentHandler
+  AccessibleAWTFocusHandler -up-|> FocusListener
+  AccessibleAWTFocusHandler -up-|> Serializable
+  AccessibleAWTComponentHandler -up-|> ComponentListener
+  AccessibleAWTComponentHandler -up-|> Serializable
+  DummyRequestFocusController -up-|> RequestFocusController
+  SingleBufferStrategy -up-|> BufferStrategy
+  BltSubRegionBufferStrategy -up-|> SubRegionShowable
+  BltSubRegionBufferStrategy -up-|> BltBufferStrategy
+  FlipSubRegionBufferStrategy -up-|> SubRegionShowable
+  FlipSubRegionBufferStrategy -up-|> FlipBufferStrategy
+  BltBufferStrategy -up-|> BufferStrategy
+  FlipBufferStrategy -up-|> BufferStrategy
+  ProxyCapabilities -up-|> ExtendedBufferCapabilities
+  FlipContents -up-|> AttributeValue
+  ManageUserLevel -up-|> JFrame
+  ManageUserLevel o-- UserLevelDAO : userLevelDAO
+  AccessibleJFrame -up-|> AccessibleAWTFrame
+  AccessibleContainerHandler -up-|> ContainerListener
+  AccessibleContainerHandler -up-|> Serializable
+  AccessibleAWTFocusHandler -up-|> FocusListener
+  AccessibleAWTFocusHandler -up-|> Serializable
+  AccessibleAWTComponentHandler -up-|> ComponentListener
+  AccessibleAWTComponentHandler -up-|> Serializable
+  AccessibleAWTFrame -up-|> AccessibleAWTWindow
+  AccessibleContainerHandler -up-|> ContainerListener
+  AccessibleContainerHandler -up-|> Serializable
+  AccessibleAWTFocusHandler -up-|> FocusListener
+  AccessibleAWTFocusHandler -up-|> Serializable
+  AccessibleAWTComponentHandler -up-|> ComponentListener
+  AccessibleAWTComponentHandler -up-|> Serializable
+  AccessibleAWTWindow -up-|> AccessibleAWTContainer
+  AccessibleContainerHandler -up-|> ContainerListener
+  AccessibleContainerHandler -up-|> Serializable
+  AccessibleAWTFocusHandler -up-|> FocusListener
+  AccessibleAWTFocusHandler -up-|> Serializable
+  AccessibleAWTComponentHandler -up-|> ComponentListener
+  AccessibleAWTComponentHandler -up-|> Serializable
+  WindowDisposerRecord -up-|> DisposerRecord
+  AccessibleAWTContainer -up-|> AccessibleAWTComponent
+  AccessibleAWTContainer +-down- AccessibleContainerHandler
+  AccessibleContainerHandler -up-|> ContainerListener
+  AccessibleContainerHandler -up-|> Serializable
+  AccessibleAWTFocusHandler -up-|> FocusListener
+  AccessibleAWTFocusHandler -up-|> Serializable
+  AccessibleAWTComponentHandler -up-|> ComponentListener
+  AccessibleAWTComponentHandler -up-|> Serializable
+  WakingRunnable -up-|> Runnable
+  DropTargetEventTargetFilter -up-|> EventTargetFilter
+  MouseEventTargetFilter -up-|> EventTargetFilter
+  AccessibleAWTComponent -up-|> Serializable
+  AccessibleAWTComponent -up-|> AccessibleComponent
+  AccessibleAWTComponent -up-|> AccessibleContext
+  AccessibleAWTComponent +-down- AccessibleAWTFocusHandler
+  AccessibleAWTComponent +-down- AccessibleAWTComponentHandler
+  AccessibleAWTFocusHandler -up-|> FocusListener
+  AccessibleAWTFocusHandler -up-|> Serializable
+  AccessibleAWTComponentHandler -up-|> ComponentListener
+  AccessibleAWTComponentHandler -up-|> Serializable
+  DummyRequestFocusController -up-|> RequestFocusController
+  SingleBufferStrategy -up-|> BufferStrategy
+  BltSubRegionBufferStrategy -up-|> SubRegionShowable
+  BltSubRegionBufferStrategy -up-|> BltBufferStrategy
+  FlipSubRegionBufferStrategy -up-|> SubRegionShowable
+  FlipSubRegionBufferStrategy -up-|> FlipBufferStrategy
+  BltBufferStrategy -up-|> BufferStrategy
+  FlipBufferStrategy -up-|> BufferStrategy
+  ProxyCapabilities -up-|> ExtendedBufferCapabilities
+  FlipContents -up-|> AttributeValue
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
