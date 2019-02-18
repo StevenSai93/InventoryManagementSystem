@@ -105,7 +105,7 @@ public class AdminGUI extends JFrame{
 
         this.setJMenuBar(jMBar);
 
-        JMenu user_menu = new JMenu("ManageUser");
+        JMenu user_menu = new JMenu("User");
         JMenu item_menu = new JMenu("Items");
         JMenu sale_menu = new JMenu("Sale");
 
@@ -118,9 +118,9 @@ public class AdminGUI extends JFrame{
         user_menu.add(user_manageUser);
         user_menu.add(user_manageLevel);
 
-        JMenuItem item_itemsList = new JMenuItem("Items List");
-        JMenuItem item_category = new JMenuItem("Add Items Category");
-        JMenuItem item_store = new JMenuItem("Add Store");
+        JMenuItem item_itemsList = new JMenuItem("Manage Item");
+        JMenuItem item_category = new JMenuItem("Mange Category");
+        JMenuItem item_store = new JMenuItem("Manage Store");
         item_menu.add(item_itemsList);
         item_menu.add(item_store);
         item_menu.add(item_category);

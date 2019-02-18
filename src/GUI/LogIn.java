@@ -61,45 +61,40 @@ public class LogIn extends JFrame{
                     System.out.println("ManageUser Name: " +userName);
                     if (user == null)
                     {
-                        JOptionPane.showMessageDialog(null, "ManageUser Doesn't Exit");
+                        JOptionPane.showMessageDialog(null, "User Doesn't Exit");
                     }
                     else {
-                        if (userName.equalsIgnoreCase((user.getUserName()))) {
-                            if (password.equals(user.getPassword()))
+                        if (password.equals(user.getPassword()))
+                        {
+                            System.out.println("Get Password");
+                            if(user.getUserLevelId().equals(1))
                             {
-                                System.out.println("Get Password");
-                                if(user.getUserLevelId().equals(1))
-                                {
-                                    AdminGUI adminGUI = new AdminGUI(user.getUserId(), user.getUserLevelId());
-                                    adminGUI.setVisible(true);
-                                    frame.dispose();
-                                    //JOptionPane.showMessageDialog(null, "Log In as Admin");
-                                }
-                                else if(user.getUserLevelId().equals(2))
-                                {
-                                    AdminGUI adminGUI = new AdminGUI(user.getUserId(), user.getUserLevelId());
-                                    adminGUI.setVisible(true);
-                                    frame.dispose();
-                                    JOptionPane.showMessageDialog(null, "Log In as ManagerGUI");
-                                }
-                                else if(user.getUserLevelId().equals(3))
-                                {
-                                    frame.dispose();
-                                    SaleForm saleForm = new SaleForm(user.getUserId(), user.getUserLevelId());
-                                    saleForm.pack();
-                                    saleForm.setVisible(true);
-                                    saleForm.setLocationRelativeTo(null);
-                                    saleForm.setDefaultCloseOperation(EXIT_ON_CLOSE);
-                                    JOptionPane.showMessageDialog(null, "Log In as Cashier");
-                                }
+                                AdminGUI adminGUI = new AdminGUI(user.getUserId(), user.getUserLevelId());
+                                adminGUI.setVisible(true);
+                                frame.dispose();
+                                //JOptionPane.showMessageDialog(null, "Log In as Admin");
                             }
-                            else
+                            else if(user.getUserLevelId().equals(2))
                             {
-                                System.out.println("Incorrect Password");
+                                AdminGUI adminGUI = new AdminGUI(user.getUserId(), user.getUserLevelId());
+                                adminGUI.setVisible(true);
+                                frame.dispose();
+                                //JOptionPane.showMessageDialog(null, "Log In as ManagerGUI");
+                            }
+                            else if(user.getUserLevelId().equals(3))
+                            {
+                                frame.dispose();
+                                SaleForm saleForm = new SaleForm(user.getUserId(), user.getUserLevelId());
+                                saleForm.pack();
+                                saleForm.setVisible(true);
+                                saleForm.setLocationRelativeTo(null);
+                                saleForm.setDefaultCloseOperation(EXIT_ON_CLOSE);
+                                //JOptionPane.showMessageDialog(null, "Log In as Cashier");
                             }
                         }
-                        else {
-                            System.out.println("ManageUser Doesn't Exit");
+                        else
+                        {
+                            JOptionPane.showMessageDialog(null, "Incorrect Password");
                         }
                         System.out.println("Log In Action "+user.getUserName() + "," + user.getPassword());
                     }
