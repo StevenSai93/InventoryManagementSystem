@@ -1,0 +1,493 @@
+@startuml
+
+title __INVENTORY MANAGEMENT SYSTEM's Class Diagram__\n
+
+  package  {
+    package GUI {
+      package GUI.Items {
+        class AddEditCategoryDialog {
+        }
+      }
+    }
+  }
+  
+
+  package  {
+    package GUI {
+      package GUI.Items {
+        class AddEditItemDialog {
+        }
+      }
+    }
+  }
+  
+
+  package  {
+    package GUI {
+      package GUI.Items {
+        class AddEditStoreDialog {
+        }
+      }
+    }
+  }
+  
+
+  package  {
+    package GUI {
+      package GUI.User {
+        class AddEditUserDialog {
+        }
+      }
+    }
+  }
+  
+
+  package  {
+    package GUI {
+      package GUI.User {
+        class AddEditUserLevelDialog {
+        }
+      }
+    }
+  }
+  
+
+  package  {
+    package GUI {
+      class AdminGUI {
+      }
+    }
+  }
+  
+
+  package  {
+    package GUI {
+      class CashierGUI {
+      }
+    }
+  }
+  
+
+  package  {
+    package DTO {
+      class Category {
+      }
+    }
+  }
+  
+
+  package  {
+    package DAO {
+      interface CategoryDAO {
+      }
+    }
+  }
+  
+
+  package  {
+    package DAO {
+      class CategoryDAOImpl {
+      }
+    }
+  }
+  
+
+  package  {
+    package Test {
+      class CategoryTest {
+      }
+    }
+  }
+  
+
+  package  {
+    package DAO {
+      class ConnectionFactory {
+      }
+    }
+  }
+  
+
+  package  {
+    class Database {
+    }
+  }
+  
+
+  package  {
+    package GUI {
+      package GUI.Items {
+        class EntryForm {
+        }
+      }
+    }
+  }
+  
+
+  package  {
+    package DTO {
+      class EntryList {
+      }
+    }
+  }
+  
+
+  package  {
+    package DAO {
+      interface EntryListDAO {
+      }
+    }
+  }
+  
+
+  package  {
+    package DAO {
+      class EntryListDAOImpl {
+      }
+    }
+  }
+  
+
+  package  {
+    class InventoryManagementSystem {
+    }
+  }
+  
+
+  package  {
+    package DAO {
+      interface ItemDAO {
+      }
+    }
+  }
+  
+
+  package  {
+    package DAO {
+      class ItemDAOImpl {
+      }
+    }
+  }
+  
+
+  package  {
+    package Test {
+      class ItemTest {
+      }
+    }
+  }
+  
+
+  package  {
+    package DTO {
+      class Items {
+      }
+    }
+  }
+  
+
+  package  {
+    package GUI {
+      class LogIn {
+      }
+    }
+  }
+  
+
+  package  {
+    package GUI {
+      package GUI.User {
+        class ManageUser {
+        }
+      }
+    }
+  }
+  
+
+  package  {
+    package GUI {
+      package GUI.User {
+        class ManageUserLevel {
+        }
+      }
+    }
+  }
+  
+
+  package  {
+    package GUI {
+      package GUI.Report {
+        class ReportByUserForm {
+        }
+      }
+    }
+  }
+  
+
+  package  {
+    package GUI {
+      package GUI.Report {
+        class ReportDialog {
+        }
+      }
+    }
+  }
+  
+
+  package  {
+    package GUI {
+      package GUI.Report {
+        class ReportForm {
+        }
+      }
+    }
+  }
+  
+
+  package  {
+    package DTO {
+      class Sale {
+      }
+    }
+  }
+  
+
+  package  {
+    package DAO {
+      interface SaleDAO {
+      }
+    }
+  }
+  
+
+  package  {
+    package DAO {
+      class SaleDAOImpl {
+      }
+    }
+  }
+  
+
+  package  {
+    package GUI {
+      class SaleForm {
+      }
+    }
+  }
+  
+
+  package  {
+    package Test {
+      class SaleTest {
+      }
+    }
+  }
+  
+
+  package  {
+    package DTO {
+      class StoreLocation {
+      }
+    }
+  }
+  
+
+  package  {
+    package DAO {
+      interface StoreLocationDAO {
+      }
+    }
+  }
+  
+
+  package  {
+    package DAO {
+      class StoreLocationDAOImpl {
+      }
+    }
+  }
+  
+
+  package  {
+    package Test {
+      class StoreLocationTest {
+      }
+    }
+  }
+  
+
+  package  {
+    package DTO {
+      class User {
+      }
+    }
+  }
+  
+
+  package  {
+    package DAO {
+      interface UserDAO {
+      }
+    }
+  }
+  
+
+  package  {
+    package DAO {
+      class UserDAOImpl {
+      }
+    }
+  }
+  
+
+  package  {
+    package DTO {
+      class UserLevel {
+      }
+    }
+  }
+  
+
+  package  {
+    package DAO {
+      interface UserLevelDAO {
+      }
+    }
+  }
+  
+
+  package  {
+    package DAO {
+      class UserLevelDAOImpl {
+      }
+    }
+  }
+  
+
+  package  {
+    package Test {
+      class UserLevelTest {
+      }
+    }
+  }
+  
+
+  package  {
+    package Test {
+      class UserTest {
+      }
+    }
+  }
+  
+
+  package  {
+    package GUI {
+      package GUI.Items {
+        class ViewCategory {
+        }
+      }
+    }
+  }
+  
+
+  package  {
+    package GUI {
+      package GUI.Items {
+        class ViewItem {
+        }
+      }
+    }
+  }
+  
+
+  package  {
+    package GUI {
+      package GUI.Items {
+        class ViewLowStockDialog {
+        }
+      }
+    }
+  }
+  
+
+  package  {
+    package GUI {
+      package GUI.Items {
+        class ViewStore {
+        }
+      }
+    }
+  }
+  
+
+  AddEditCategoryDialog -up-|> JDialog
+  AddEditCategoryDialog o-- CategoryDAO : categoryDAO
+  AddEditItemDialog -up-|> JDialog
+  AddEditItemDialog o-- ItemDAO : itemDAO
+  AddEditItemDialog o-- StoreLocationDAO : storeLocationDAO
+  AddEditItemDialog o-- CategoryDAO : categoryDAO
+  AddEditStoreDialog -up-|> JDialog
+  AddEditStoreDialog o-- StoreLocationDAO : storeLocationDAO
+  AddEditUserDialog -up-|> JDialog
+  AddEditUserDialog o-- UserDAO : userDAO
+  AddEditUserDialog o-- UserLevelDAO : userLevelDAO
+  AddEditUserLevelDialog -up-|> JDialog
+  AddEditUserLevelDialog o-- UserLevelDAO : userLevelDAO
+  AdminGUI -up-|> JFrame
+  AdminGUI o-- SaleDAO : saleDAO
+  AdminGUI o-- ItemDAO : itemDAO
+  AdminGUI o-- UserDAO : userDAO
+  CashierGUI -up-|> JFrame
+  CategoryDAOImpl -up-|> CategoryDAO
+  EntryForm -up-|> JFrame
+  EntryForm o-- EntryList : entryList
+  EntryForm o-- Items : foundItem
+  EntryForm o-- EntryListDAO : entryListDAO
+  EntryForm o-- ItemDAO : itemDAO
+  EntryForm o-- UserDAO : userDAO
+  EntryListDAOImpl -up-|> EntryListDAO
+  ItemDAOImpl -up-|> ItemDAO
+  LogIn -up-|> JFrame
+  LogIn o-- UserDAO : userDAO
+  ManageUser -up-|> JFrame
+  ManageUser o-- UserDAO : userDAO
+  ManageUserLevel -up-|> JFrame
+  ManageUserLevel o-- UserLevelDAO : userLevelDAO
+  ReportByUserForm -up-|> JFrame
+  ReportByUserForm o-- SaleDAO : saleDAO
+  ReportByUserForm o-- ItemDAO : itemDAO
+  ReportByUserForm o-- UserDAO : userDAO
+  ReportDialog -up-|> JDialog
+  ReportDialog o-- SaleDAO : saleDAO
+  ReportDialog o-- ItemDAO : itemDAO
+  ReportDialog o-- UserDAO : userDAO
+  ReportForm -up-|> JFrame
+  ReportForm o-- SaleDAO : saleDAO
+  ReportForm o-- ItemDAO : itemDAO
+  ReportForm o-- UserDAO : userDAO
+  SaleDAOImpl -up-|> SaleDAO
+  SaleForm -up-|> JFrame
+  SaleForm o-- Sale : sale
+  SaleForm o-- SaleDAO : saleDAO
+  SaleForm o-- ItemDAO : itemDAO
+  StoreLocationDAOImpl -up-|> StoreLocationDAO
+  UserDAOImpl -up-|> UserDAO
+  UserLevelDAOImpl -up-|> UserLevelDAO
+  ViewCategory -up-|> JFrame
+  ViewCategory o-- CategoryDAO : categoryDAO
+  ViewItem -up-|> JFrame
+  ViewItem o-- ItemDAO : itemDAO
+  ViewLowStockDialog -up-|> JDialog
+  ViewLowStockDialog o-- ItemDAO : itemDAO
+  ViewStore -up-|> JFrame
+  ViewStore o-- StoreLocationDAO : storeLocationDAO
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

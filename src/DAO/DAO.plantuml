@@ -1,0 +1,268 @@
+@startuml
+
+title __DAO's Class Diagram__\n
+
+  package  {
+    package DAO {
+      interface CategoryDAO {
+          {abstract} + getAllCategory()
+          {abstract} + getCategoryList()
+          {abstract} + getCategoryById()
+          {abstract} + getCategoryByName()
+          {abstract} + insertCategory()
+          {abstract} + updateCategory()
+          {abstract} + deleteCategory()
+      }
+    }
+  }
+  
+
+  package  {
+    package DAO {
+      class CategoryDAOImpl {
+          + getAllCategory()
+          + getCategoryList()
+          + getCategoryById()
+          + getCategoryByName()
+          + insertCategory()
+          + updateCategory()
+          + deleteCategory()
+      }
+    }
+  }
+  
+
+  package  {
+    package DAO {
+      class ConnectionFactory {
+          {static} + URL : String
+          {static} + USER : String
+          {static} + PASS : String
+          {static} + getConnection()
+          {static} + main()
+      }
+    }
+  }
+  
+
+  package  {
+    package DAO {
+      interface EntryListDAO {
+          {abstract} + getAllEntryList()
+          {abstract} + getEntryListByUserId()
+          {abstract} + getEntryListByItemId()
+          {abstract} + getEntryListByDate()
+          {abstract} + insertEntryList()
+          {abstract} + insertEntryList()
+          {abstract} + updateEntryList()
+          {abstract} + deleteEntryList()
+      }
+    }
+  }
+  
+
+  package  {
+    package DAO {
+      class EntryListDAOImpl {
+          + getAllEntryList()
+          + getEntryListByUserId()
+          + getEntryListByItemId()
+          + getEntryListByDate()
+          + insertEntryList()
+          + insertEntryList()
+          + updateEntryList()
+          + deleteEntryList()
+      }
+    }
+  }
+  
+
+  package  {
+    package DAO {
+      interface ItemDAO {
+          {abstract} + getAllItemList()
+          {abstract} + getItemById()
+          {abstract} + getItemByName()
+          {abstract} + getItemByCategoryId()
+          {abstract} + getItemByStoreId()
+          {abstract} + getLowStockItem()
+          {abstract} + insertItem()
+          {abstract} + updateItem()
+          {abstract} + deleteItem()
+          {abstract} + updateStock()
+          {abstract} + updateStockList()
+      }
+    }
+  }
+  
+
+  package  {
+    package DAO {
+      class ItemDAOImpl {
+          + getAllItemList()
+          + getItemById()
+          + getItemByName()
+          + getItemByCategoryId()
+          + getItemByStoreId()
+          + getLowStockItem()
+          + insertItem()
+          + updateItem()
+          + deleteItem()
+          + updateStock()
+          + updateStockList()
+      }
+    }
+  }
+  
+
+  package  {
+    package DAO {
+      interface SaleDAO {
+          {abstract} + getAllSaleList()
+          {abstract} + getSaleListById()
+          {abstract} + getSaleListByProductId()
+          {abstract} + getSaleListByUserId()
+          {abstract} + getSaleListBySaleDate()
+          {abstract} + getSaleListByDate()
+          {abstract} + insertSale()
+          {abstract} + insertSale()
+          {abstract} + updateSale()
+          {abstract} + deleteSaleByProduct()
+          {abstract} + getSaleListByTotalAmount()
+          {abstract} + getSaleListByTotalAmount()
+          {abstract} + getSaleListByItem()
+          {abstract} + getSaleListByItem()
+      }
+    }
+  }
+  
+
+  package  {
+    package DAO {
+      class SaleDAOImpl {
+          + getAllSaleList()
+          + getSaleListById()
+          + getSaleListByProductId()
+          + getSaleListByUserId()
+          + getSaleListBySaleDate()
+          + getSaleListByDate()
+          + insertSale()
+          + insertSale()
+          + updateSale()
+          + deleteSaleByProduct()
+          + getSaleListByTotalAmount()
+          + getSaleListByTotalAmount()
+          + getSaleListByItem()
+          + getSaleListByItem()
+      }
+    }
+  }
+  
+
+  package  {
+    package DAO {
+      interface StoreLocationDAO {
+          {abstract} + getAllStoreLocation()
+          {abstract} + getStoreLocationList()
+          {abstract} + getStoreLocationById()
+          {abstract} + getStoreLocationByName()
+          {abstract} + insertStoreLocation()
+          {abstract} + updateStoreLocation()
+          {abstract} + deleteStoreLocation()
+      }
+    }
+  }
+  
+
+  package  {
+    package DAO {
+      class StoreLocationDAOImpl {
+          + getAllStoreLocation()
+          + getStoreLocationList()
+          + getStoreLocationById()
+          + getStoreLocationByName()
+          + insertStoreLocation()
+          + updateStoreLocation()
+          + deleteStoreLocation()
+      }
+    }
+  }
+  
+
+  package  {
+    package DAO {
+      interface UserDAO {
+          {abstract} + getAllUser()
+          {abstract} + getUserList()
+          {abstract} + getUserById()
+          {abstract} + getUser()
+          {abstract} + insertUser()
+          {abstract} + updateUser()
+          {abstract} + deleteUser()
+      }
+    }
+  }
+  
+
+  package  {
+    package DAO {
+      class UserDAOImpl {
+          + getAllUser()
+          + getUserList()
+          + getUserById()
+          + getUser()
+          + insertUser()
+          + updateUser()
+          + deleteUser()
+      }
+    }
+  }
+  
+
+  package  {
+    package DAO {
+      interface UserLevelDAO {
+          {abstract} + getAllUserLevel()
+          {abstract} + getUserLevelById()
+          {abstract} + getUserLevelByName()
+          {abstract} + getUserLevelList()
+          {abstract} + insertUserLevel()
+          {abstract} + updateUserLevel()
+          {abstract} + deleteUser()
+      }
+    }
+  }
+  
+
+  package  {
+    package DAO {
+      class UserLevelDAOImpl {
+          + getAllUserLevel()
+          + getUserLevelById()
+          + getUserLevelByName()
+          + getUserLevelList()
+          + insertUserLevel()
+          + updateUserLevel()
+          + deleteUser()
+      }
+    }
+  }
+  
+
+  CategoryDAOImpl -up-|> CategoryDAO
+  EntryListDAOImpl -up-|> EntryListDAO
+  ItemDAOImpl -up-|> ItemDAO
+  SaleDAOImpl -up-|> SaleDAO
+  StoreLocationDAOImpl -up-|> StoreLocationDAO
+  UserDAOImpl -up-|> UserDAO
+  UserLevelDAOImpl -up-|> UserLevelDAO
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
