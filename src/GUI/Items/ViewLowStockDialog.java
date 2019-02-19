@@ -45,6 +45,10 @@ public class ViewLowStockDialog extends JDialog {
         lowStockTableModel.addColumn("Minimal Stock");
         lowStockTableModel.addColumn("Store");
 
+        itemTable.getTableHeader().setFont(new Font("Dialog", Font.PLAIN, 13));
+        itemTable.setGridColor(Color.gray);
+        itemTable.setRowHeight(21);
+
         itemTable.getColumnModel().getColumn(0).setMinWidth(100);
         itemTable.getColumnModel().getColumn(1).setMinWidth(150);
         itemTable.getColumnModel().getColumn(2).setMinWidth(100);

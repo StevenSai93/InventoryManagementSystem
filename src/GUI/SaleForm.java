@@ -81,6 +81,10 @@ public class SaleForm extends JFrame{
         defaultTableModel.addColumn("TotalPrice");
         //add(fieldPanel);
 
+        saleTable.getTableHeader().setFont(new Font("Dialog", Font.PLAIN, 13));
+        saleTable.setGridColor(Color.gray);
+        saleTable.setRowHeight(21);
+
         saleTable.getColumnModel().getColumn(0).setMaxWidth(50);
         saleTable.getColumnModel().getColumn(3).setCellRenderer(rightRenderer);
         saleTable.getColumnModel().getColumn(4).setCellRenderer(rightRenderer);

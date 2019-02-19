@@ -6,6 +6,7 @@ import DTO.UserLevel;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.*;
 import java.util.List;
 
@@ -34,6 +35,11 @@ public class ManageUserLevel extends JFrame{
 
         defaultTableModel.addColumn("ID");
         defaultTableModel.addColumn("User Level");
+
+        levelTable.getTableHeader().setFont(new Font("Dialog", Font.PLAIN, 13));
+        levelTable.setGridColor(Color.gray);
+        levelTable.setRowHeight(21);
+
         addDataToTable();
 
         frame.add(levelPanel);

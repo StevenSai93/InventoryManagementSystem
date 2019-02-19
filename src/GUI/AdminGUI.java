@@ -50,9 +50,6 @@ public class AdminGUI extends JFrame{
     private JTable lowStockTable;
     private JPanel lowStockPane;
 
-    /**
-     *
-     */
     private DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel();
     private DefaultComboBoxModel byItemComboBoxModel = new DefaultComboBoxModel();
     private DefaultTableModel tableModel1 = new DefaultTableModel();
@@ -173,9 +170,6 @@ public class AdminGUI extends JFrame{
         });
 
 
-        /**
-         *New Code
-         */
         tabbedPane = new JTabbedPane();
         tabbedPane.add("By Sale ID", reportPane1);
         tabbedPane.add("By Item", reportPane2);
@@ -218,6 +212,10 @@ public class AdminGUI extends JFrame{
         table1.getColumnModel().getColumn(0).setMaxWidth(50);
         table1.getColumnModel().getColumn(3).setPreferredWidth(100);
         table1.getColumnModel().getColumn(4).setCellRenderer(rightRenderer);
+        //table1.setShowHorizontalLines(true);
+        table1.getTableHeader().setFont(new Font("Dialog", Font.PLAIN, 13));
+        table1.setGridColor(Color.gray);
+        table1.setRowHeight(21);
 
 
         table2 = new JTable(tableModel2);
@@ -234,6 +232,9 @@ public class AdminGUI extends JFrame{
         table2.getColumnModel().getColumn(3).setCellRenderer(rightRenderer);
         table2.getColumnModel().getColumn(4).setCellRenderer(rightRenderer);
         table2.getColumnModel().getColumn(5).setCellRenderer(rightRenderer);
+        table2.getTableHeader().setFont(new Font("Dialog", Font.PLAIN, 13));
+        table2.setGridColor(Color.gray);
+        table2.setRowHeight(21);
 
 
         tableJPanel1.setMinimumSize(new Dimension(800, 900));
@@ -254,14 +255,6 @@ public class AdminGUI extends JFrame{
                 System.out.println("************** \nStart Date :"+sDate);
                 System.out.println("************** \nEnd Date :"+eDate);
                 String foundUserName = String.valueOf(userComboBox.getItemAt(userComboBox.getSelectedIndex()));
-                /*
-                //saleList = saleDAO.getSaleListByDate(sDate, eDate);
-                System.out.println("Start Date :" +sDate);
-                System.out.println("End Date :" +eDate);
-                System.out.println(userComboBox.getItemAt(userComboBox.getSelectedIndex()));
-                System.out.println(userComboBox.getItemAt(userComboBox.getSelectedIndex()).equals("All"));
-                System.out.println(findUserId(foundUserName ,userList));
-                */
                 if(foundUserName.equals("All"))
                 {
                     saleList = saleDAO.getSaleListByTotalAmount(sDate, eDate);
@@ -271,6 +264,7 @@ public class AdminGUI extends JFrame{
                     saleList = saleDAO.getSaleListByTotalAmount(sDate, eDate, findUserId(foundUserName ,userList));
                 }
                 addDataToReportByIDTable1();
+                tableModel2.setRowCount(0);
             }
         });
 
@@ -322,6 +316,9 @@ public class AdminGUI extends JFrame{
         reportTable2.getColumnModel().getColumn(6).setCellRenderer(rightRenderer);
         reportTable2.getColumnModel().getColumn(7).setCellRenderer(rightRenderer);
         reportTable2.getColumnModel().getColumn(8).setCellRenderer(rightRenderer);
+        reportTable2.getTableHeader().setFont(new Font("Dialog", Font.PLAIN, 13));
+        reportTable2.setGridColor(Color.gray);
+        reportTable2.setRowHeight(21);
 
         reportPane2.add(tablePane2);
 
@@ -367,6 +364,9 @@ public class AdminGUI extends JFrame{
         lowStockTable.getColumnModel().getColumn(4).setMinWidth(100);
         lowStockTable.getColumnModel().getColumn(5).setMinWidth(100);
         lowStockTable.getColumnModel().getColumn(6).setMinWidth(100);
+        lowStockTable.getTableHeader().setFont(new Font("Dialog", Font.PLAIN, 13));
+        lowStockTable.setGridColor(Color.gray);
+        lowStockTable.setRowHeight(21);
 
 
         lowStockTable.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
@@ -433,7 +433,7 @@ public class AdminGUI extends JFrame{
             Items foundItem = findItemName(saleList.get(x).getItemId(), itemsList);
 
             System.out.println(saleList.get(x).getSaleId());
-            tableModel2.addRow(new Object[]{saleList.get(x).getItemId(), foundItem.getItemName(), saleList.get(x).getQuantity(), saleList.get(x).getItemPrice(), saleList.get(x).getTotalPrice()});
+            tableModel2.addRow(new Object[]{x+1, saleList.get(x).getItemId(), foundItem.getItemName(), saleList.get(x).getQuantity(), saleList.get(x).getItemPrice(), saleList.get(x).getTotalPrice()});
             totalPrice += (saleList.get(x).getTotalPrice());
             System.out.println(saleList.get(x).getItemId() +"\t"+ foundItem.getItemName()+"\t"+ saleList.get(x).getQuantity()+"\t"+ saleList.get(x).getItemPrice()+"\t"+ saleList.get(x).getTotalPrice());
             System.out.println("*********************************\n");

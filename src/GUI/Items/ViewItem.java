@@ -62,6 +62,10 @@ public class ViewItem extends JFrame{
         defaultTableModel.addColumn("Minimal Stock Level");
         defaultTableModel.addColumn("Store");
 
+        itemTable.getTableHeader().setFont(new Font("Dialog", Font.PLAIN, 13));
+        itemTable.setGridColor(Color.gray);
+        itemTable.setRowHeight(21);
+
         itemTable.getColumnModel().getColumn(0).setMaxWidth(50);
         itemTable.getColumnModel().getColumn(4).setPreferredWidth(30);
         itemTable.getColumnModel().getColumn(5).setPreferredWidth(50);

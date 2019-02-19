@@ -8,6 +8,7 @@ import DTO.User;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -69,6 +70,10 @@ public class EntryForm extends JFrame{
         defaultTableModel.addColumn("Quantity");
         //defaultTableModel.addColumn("User Name");
         //defaultTableModel.addColumn("Entry Date");
+
+        entryTable.getTableHeader().setFont(new Font("Dialog", Font.PLAIN, 13));
+        entryTable.setGridColor(Color.gray);
+        entryTable.setRowHeight(21);
 
         entryTable.getColumnModel().getColumn(3).setCellRenderer(rightRenderer);
 

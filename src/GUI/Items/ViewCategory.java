@@ -6,6 +6,7 @@ import DTO.Category;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.*;
 import java.util.List;
 
@@ -33,6 +34,10 @@ public class ViewCategory extends JFrame{
         defaultTableModel.addColumn("ID");
         defaultTableModel.addColumn("Category");
         addDataToTable();
+
+        categoryTable.getTableHeader().setFont(new Font("Dialog", Font.PLAIN, 13));
+        categoryTable.setGridColor(Color.gray);
+        categoryTable.setRowHeight(21);
 
         frame.add(categoryPanel);
         categoryPanel.add(tablePane);

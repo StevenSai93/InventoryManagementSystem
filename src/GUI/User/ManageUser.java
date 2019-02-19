@@ -7,6 +7,7 @@ import DTO.User;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.*;
 import java.util.List;
 
@@ -56,6 +57,10 @@ public class ManageUser extends JFrame{
         defaultTableModel.addColumn("Address");
         defaultTableModel.addColumn("email");
         defaultTableModel.addColumn("Phone Number");
+
+        user_table.getTableHeader().setFont(new Font("Dialog", Font.PLAIN, 13));
+        user_table.setGridColor(Color.gray);
+        user_table.setRowHeight(21);
 
         user_table.getColumnModel().getColumn(0).setPreferredWidth(10);
         user_table.getColumnModel().getColumn(1).setPreferredWidth(50);

@@ -7,6 +7,7 @@ import DTO.StoreLocation;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.*;
 import java.util.List;
 
@@ -34,6 +35,10 @@ public class ViewStore extends JFrame{
 
         defaultTableModel.addColumn("ID");
         defaultTableModel.addColumn("Store Place");
+
+        storeTable.getTableHeader().setFont(new Font("Dialog", Font.PLAIN, 13));
+        storeTable.setGridColor(Color.gray);
+        storeTable.setRowHeight(21);
 
         addDataToTable();
 
