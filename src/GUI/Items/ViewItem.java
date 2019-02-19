@@ -59,7 +59,7 @@ public class ViewItem extends JFrame{
         defaultTableModel.addColumn("Category");
         defaultTableModel.addColumn("Price");
         defaultTableModel.addColumn("Current Stock");
-        defaultTableModel.addColumn("Minimal Stock Level");
+        defaultTableModel.addColumn("Minimal Stock");
         defaultTableModel.addColumn("Store");
 
         itemTable.getTableHeader().setFont(new Font("Dialog", Font.PLAIN, 13));
