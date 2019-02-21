@@ -74,6 +74,8 @@ public class AdminGUI extends JFrame{
     private String total;
     private String totalAmount;
 
+    private int lowStockCount = 0;
+
     private Double totalSaleAmount;
     private Double totalPrice;
 
@@ -124,6 +126,13 @@ public class AdminGUI extends JFrame{
 
         JMenuItem sale_makeSale = new JMenuItem("Make Sale");
         sale_menu.add(sale_makeSale);
+
+        lowStockItemsList = itemDAO.getLowStockItem();
+        lowStockCount = lowStockItemsList.size();
+        if(lowStockCount != 0)
+        {
+            JOptionPane.showMessageDialog(null, "There are " + lowStockCount + " item(s) need to restock");
+        }
 
 
 

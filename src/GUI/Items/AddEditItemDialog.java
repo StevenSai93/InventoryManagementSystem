@@ -11,7 +11,7 @@ import java.util.List;
 
 public class AddEditItemDialog extends JDialog {
     private JPanel contentPane;
-    private JButton buttonOK;
+    private JButton buttonAdd;
     private JButton buttonCancel;
     private JTextField idField;
     private JTextField minimalStockField;
@@ -42,7 +42,7 @@ public class AddEditItemDialog extends JDialog {
 
         setContentPane(contentPane);
         setModal(true);
-        getRootPane().setDefaultButton(buttonOK);
+        getRootPane().setDefaultButton(buttonAdd);
 
         storeLocationList = storeLocationDAO.getStoreLocationList();
         categoryList = categoryDAO.getCategoryList();
@@ -62,7 +62,7 @@ public class AddEditItemDialog extends JDialog {
         }
 
 
-        buttonOK.addActionListener(new ActionListener() {
+        buttonAdd.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 addItem();
             }
@@ -98,11 +98,13 @@ public class AddEditItemDialog extends JDialog {
 
         setContentPane(contentPane);
         setModal(true);
-        getRootPane().setDefaultButton(buttonOK);
+        getRootPane().setDefaultButton(buttonAdd);
 
         itemsList = itemDAO.getItemById(editId);
         storeLocationList = storeLocationDAO.getStoreLocationList();
         categoryList = categoryDAO.getCategoryList();
+
+        int stockLevel = itemsList.get(0).getItemStock();
 
         categoryBoxModel = new DefaultComboBoxModel();
         categoryBox.setModel(categoryBoxModel);
@@ -126,9 +128,9 @@ public class AddEditItemDialog extends JDialog {
         storeBoxModel.setSelectedItem(itemsList.get(0).getStorePlace());
         minimalStockField.setText(String.valueOf(itemsList.get(0).getMinimalStockLevel()));
 
-        buttonOK.addActionListener(new ActionListener() {
+        buttonAdd.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                editItem(editId);
+                editItem(stockLevel);
             }
         });
 
@@ -155,7 +157,7 @@ public class AddEditItemDialog extends JDialog {
 
         this.setTitle("Edit Item");
         this.setResizable(false);
-        buttonOK.setText("Update");
+        buttonAdd.setText("Update");
         idField.setEnabled(false);
         pack();
     }
@@ -190,7 +192,7 @@ public class AddEditItemDialog extends JDialog {
 
     }
 
-    private void editItem(String editId){
+    private void editItem(int stockLevel){
         try {
             if (idField.getText().equals("") || nameField.getText().equals("") || priceField.getText().equals("") || minimalStockField.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Please Enter all the Field");
@@ -205,7 +207,7 @@ public class AddEditItemDialog extends JDialog {
                 categoryList = categoryDAO.getCategoryByName(category);
                 storeLocationList = storeLocationDAO.getStoreLocationByName(store);
 
-                itemDAO.updateItem(id, name, price, 0, categoryList.get(0).getCategoryId(), storeLocationList.get(0).getStoreId(), minimal);
+                itemDAO.updateItem(id, name, price, stockLevel, categoryList.get(0).getCategoryId(), storeLocationList.get(0).getStoreId(), minimal);
                 dispose();
             }
         }
