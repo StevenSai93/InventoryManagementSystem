@@ -2,6 +2,16 @@ package DTO;
 
 public class EntryList {
     private Integer userId;
+    private String userName;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     private String itemId;
     private String itemName;
     private String entryDate;
@@ -19,6 +29,15 @@ public class EntryList {
         this.itemId = itemId;
         this.itemName = itemName;
         this.itemStock = itemStock;
+        this.quantity = quantity;
+    }
+
+    public EntryList(Integer userId, String userName, String itemId, String itemName, String entryDate, Integer quantity) {
+        this.userId = userId;
+        this.userName = userName;
+        this.itemId = itemId;
+        this.itemName = itemName;
+        this.entryDate = entryDate;
         this.quantity = quantity;
     }
 

@@ -1,13 +1,13 @@
 package GUI;
 
 import DAO.*;
+import DTO.EntryList;
 import DTO.Items;
 import DTO.Sale;
 import DTO.User;
 import GUI.Items.ViewCategory;
 import GUI.Items.ViewItem;
 import GUI.Items.ViewStore;
-import GUI.Report.ReportByUserForm;
 import GUI.User.ManageUser;
 import GUI.User.ManageUserLevel;
 import com.toedter.calendar.JDateChooser;
@@ -29,8 +29,8 @@ public class AdminGUI extends JFrame{
     private JScrollPane tablePane2;
     private JScrollPane tablePane1;
     private JTabbedPane tabbedPane;
-    private JPanel reportPane1;
-    private JPanel reportPane2;
+    private JPanel reportPanel1;
+    private JPanel reportPanel2;
     private JPanel tableJPanel1;
     private JPanel tableJPanel2;
     private JPanel startDate1;
@@ -44,18 +44,27 @@ public class AdminGUI extends JFrame{
     private JButton findButton2;
     private JComboBox itemComboBox;
     private JTable reportTable2;
-    private JButton cancelButton2;
     private JLabel byItemTotalLabel;
     private JScrollPane lowStockTablePane;
     private JTable lowStockTable;
-    private JPanel lowStockPane;
+    private JPanel lowStockPanel;
+    private JPanel entryPanel;
+    private JTable entryTable;
+    private JPanel entryStartDate;
+    private JPanel entryEndDate;
+    private JButton entryFindButton;
+    private JComboBox entryItemComboBox;
+    private JScrollPane entryScroollPane;
+    private JPanel entryTablePanel;
 
     private DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel();
     private DefaultComboBoxModel byItemComboBoxModel = new DefaultComboBoxModel();
+    private DefaultComboBoxModel entryItemComboBoxModel = new DefaultComboBoxModel();
     private DefaultTableModel tableModel1 = new DefaultTableModel();
     private DefaultTableModel tableModel2 = new DefaultTableModel();
     private DefaultTableModel byItemTableModel =  new DefaultTableModel();
     private DefaultTableModel lowStockTableModel = new DefaultTableModel();
+    private DefaultTableModel entryItemTableModel = new DefaultTableModel();
 
     private SaleDAO saleDAO = new SaleDAOImpl();
     private List<Sale> saleList;
@@ -64,6 +73,8 @@ public class AdminGUI extends JFrame{
     private List<Items> lowStockItemsList;
     private UserDAO userDAO = new UserDAOImpl();
     private List<User> userList;
+    private List<EntryList> entryLists;
+    private EntryListDAO entryListDAO = new EntryListDAOImpl();
 
     private String sDate;
     private String eDate;
@@ -73,6 +84,9 @@ public class AdminGUI extends JFrame{
     private String quantity;
     private String total;
     private String totalAmount;
+    private String entrySDate;
+    private String entryEDate;
+    private String entryQuantity;
 
     private int lowStockCount = 0;
 
@@ -85,6 +99,9 @@ public class AdminGUI extends JFrame{
     private JDateChooser startDateChooser2 = new JDateChooser(calendar.getTime());
     private JDateChooser endDateChooser2 = new JDateChooser(calendar.getTime());
     private SimpleDateFormat simpleDateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private JDateChooser entryStartDateChooser = new JDateChooser(calendar.getTime());
+    private JDateChooser entryEndDateChooser = new JDateChooser(calendar.getTime());
+
 
     public AdminGUI(Integer userId, Integer userLevel)
     {
@@ -180,9 +197,10 @@ public class AdminGUI extends JFrame{
 
 
         tabbedPane = new JTabbedPane();
-        tabbedPane.add("By Sale ID", reportPane1);
-        tabbedPane.add("By Item", reportPane2);
-        tabbedPane.add("Low Stock", lowStockPane);
+        tabbedPane.add("By Sale ID", reportPanel1);
+        tabbedPane.add("By Item", reportPanel2);
+        tabbedPane.add("Low Stock", lowStockPanel);
+        tabbedPane.add("Entry List", entryPanel);
         add(tabbedPane);
 
         userList = userDAO.getUserList();
@@ -329,7 +347,7 @@ public class AdminGUI extends JFrame{
         reportTable2.setGridColor(Color.gray);
         reportTable2.setRowHeight(21);
 
-        reportPane2.add(tablePane2);
+        reportPanel2.add(tablePane2);
 
 
         findButton2.addActionListener(new ActionListener() {
@@ -383,7 +401,7 @@ public class AdminGUI extends JFrame{
         lowStockTable.getColumnModel().getColumn(5).setCellRenderer(rightRenderer);
         lowStockTable.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
         addDataToLowStockTable();
-        lowStockPane.add(lowStockTablePane);
+        lowStockPanel.add(lowStockTablePane);
 
         tabbedPane.addMouseListener(new MouseAdapter() {
             @Override
@@ -392,7 +410,59 @@ public class AdminGUI extends JFrame{
                 addDataToLowStockTable();
             }
         });
+
+        /**
+         * Entry Tabbed Panel
+         */
+        entryStartDate.add(entryStartDateChooser);
+        entryEndDate.add(entryEndDateChooser);
+        entryItemComboBox.setModel(entryItemComboBoxModel);
+        entryItemComboBoxModel.addElement("All");
+        for(int x =0; x<itemsList.size(); x++)
+        {
+            entryItemComboBoxModel.addElement(itemsList.get(x).getItemName());
+        }
+
+        entryTable = new JTable(entryItemTableModel);
+        entryScroollPane = new JScrollPane(entryTable);
+
+        entryItemTableModel.addColumn("No");
+        entryItemTableModel.addColumn("Item ID");
+        entryItemTableModel.addColumn("Item Name");
+        entryItemTableModel.addColumn("Entry Quantity");
+        entryItemTableModel.addColumn("Date");
+        entryItemTableModel.addColumn("Staff");
+
+        entryTable.getColumnModel().getColumn(0).setMaxWidth(50);
+
+        entryTable.getTableHeader().setFont(new Font("Dialog", Font.PLAIN, 13));
+        entryTable.setGridColor(Color.gray);
+        entryTable.setRowHeight(21);
+
+        entryPanel.add(entryScroollPane);
+
+        entryFindButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                entrySDate = simpleDateFormat.format(entryStartDateChooser.getDate());
+                entryEndDateChooser = new JDateChooser(Calendar.getInstance().getTime());
+                entryEDate = simpleDateFormat.format(entryEndDateChooser.getDate());
+
+                addDataToEntryListTable();
+            }
+        });
+        entryItemComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addDataToEntryListTable();
+            }
+        });
+
     }
+
+
+
+
 
     public void addDataToReportByItemTable(){
         String foundItemName = String.valueOf(itemComboBox.getItemAt(itemComboBox.getSelectedIndex()));
@@ -460,6 +530,28 @@ public class AdminGUI extends JFrame{
             stock = String.format("%,d", lowStockItemsList.get(x).getItemStock());
             minimalStock = String.format("%,d", itemsList.get(x).getMinimalStockLevel());
             lowStockTableModel.addRow(new Object[]{x+1, lowStockItemsList.get(x).getItemId(), lowStockItemsList.get(x).getItemName(), lowStockItemsList.get(x).getCategoryName(), stock, minimalStock, lowStockItemsList.get(x).getStorePlace()});
+        }
+
+    }
+
+    /**
+     * Entry List Tabbed Pane
+     */
+    public void addDataToEntryListTable()
+    {
+        String foundItemName = String.valueOf(entryItemComboBox.getItemAt(entryItemComboBox.getSelectedIndex()));
+        if(foundItemName.equals("All")) {
+            entryLists = entryListDAO.getEntryListByDate(entrySDate, entryEDate);
+        }
+        else
+        {
+            entryLists = entryListDAO.getEntryListByDate(entrySDate, entryEDate, findItemId(foundItemName, itemsList));
+        }
+        entryItemTableModel.setRowCount(0);
+        for(int x = 0; x< entryLists.size(); x++)
+        {
+            entryQuantity = String.format("%,d", entryLists.get(x).getQuantity());
+            entryItemTableModel.addRow(new Object[]{x+1, entryLists.get(x).getItemId(), entryLists.get(x).getItemName(),entryQuantity, entryLists.get(x).getEntryDate(), entryLists.get(x).getUserName()});
         }
 
     }

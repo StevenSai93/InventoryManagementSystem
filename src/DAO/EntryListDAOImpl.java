@@ -71,6 +71,53 @@ public class EntryListDAOImpl implements EntryListDAO {
     }
 
     @Override
+    public ArrayList<EntryList> getEntryListByDate(String startDate, String endDate) {
+        ArrayList<EntryList> entryList_List = new ArrayList<>();
+        try{
+            Connection connection = ConnectionFactory.getConnection();
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM entryList JOIN user on entryList.userId = user.userId JOIN item on entryList.itemId = item.itemId WHERE entryDate >= ? AND entryDate <=? ORDER BY entryDate ASC");
+            ps.setString(1, startDate);
+            ps.setString(2, endDate);
+            ResultSet rs = ps.executeQuery();
+            EntryList entryList;
+            while(rs.next())
+            {
+                entryList = new EntryList(rs.getInt("userId"),rs.getString("userName"),rs.getString("itemId"),rs.getString("itemName"),rs.getString("entryDate"),rs.getInt("quantity"));
+                entryList_List.add(entryList);
+            }
+        }
+        catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+        return entryList_List;
+    }
+
+    @Override
+    public ArrayList<EntryList> getEntryListByDate(String startDate, String endDate, String itemId) {
+        ArrayList<EntryList> entryList_List = new ArrayList<>();
+        try{
+            Connection connection = ConnectionFactory.getConnection();
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM entryList JOIN user on entryList.userId = user.userId JOIN item on entryList.itemId = item.itemId WHERE entryDate >= ? AND entryDate <=? AND entryList.itemId =? ORDER BY entryDate ASC");
+            ps.setString(1, startDate);
+            ps.setString(2, endDate);
+            ps.setString(3, itemId);
+            ResultSet rs = ps.executeQuery();
+            EntryList entryList;
+            while(rs.next())
+            {
+                entryList = new EntryList(rs.getInt("userId"),rs.getString("userName"),rs.getString("itemId"),rs.getString("itemName"),rs.getString("entryDate"),rs.getInt("quantity"));
+                entryList_List.add(entryList);
+            }
+        }
+        catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+        return entryList_List;
+    }
+/**
+    @Override
     public ArrayList<EntryList> getEntryListByDate(String entryDate) {
         ArrayList<EntryList> entryList_List = new ArrayList<>();
         try{
@@ -91,7 +138,7 @@ public class EntryListDAOImpl implements EntryListDAO {
         }
         return null;
     }
-
+**/
     @Override
     public boolean insertEntryList(List<EntryList> entryListList) {
         Connection connection = ConnectionFactory.getConnection();
